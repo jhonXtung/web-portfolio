@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jhon Whiliz O. Pizarra | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <header>
+    <img src="images/profile.jpg" class="profile-pic">
+    <h1>JHON WHILIZ O. PIZARRA</h1>
+    <h2>I am a <span class="typing">Web Developer | Creative Designer | Game Developer</span></h2>
+    <a href="#contact" class="btn">Hire Me</a>
+    </header>
+
+
+    <section class="about">
+        <h2>About Me :)</h2>
+        <p>
+            I bring ideas to life through collaboration, turning concepts into meaningful results. I’m passionate about creating work that is effective, impactful, and visually compelling.
+        </p>
+    </section>
+
+    <section class="portfolio">
+        <h2>Portfolio</h2>
+        <div class="gallery">
+            <img src="">
+            <img src="https://picsum.photos/400?2">
+            <img src="https://picsum.photos/400?3">
+            <img src="https://picsum.photos/400?4">
+        </div>
+    </section>
+
+   <section class="contact">
+    <h2>Contact Information</h2>
+    <p>Email: <a href="mailto:janjanpizarra946@email.com">janjanpizarra946@email.com</a></p>
+    <p>Phone: <a href="tel:09157357680">09157357680</a></p>
+    <p>Facebook: <a href="https://www.facebook.com/jhonwhiliz.pizaera" target="_blank">My Facebook</a></p>
+    </section>
+
+    <footer>
+        <p>© 2026 Jhon Pizarra</p>
+    </footer>
+<script>
+const phrases = ["Web Designer", "Web Developer", "Game Developer"];
+let i = 0;              // index of the current phrase
+let j = 0;              // index of the current letter
+let currentText = "";
+let isDeleting = false;
+
+const typingSpeed = 200;       // speed of typing
+const deletingSpeed = 100;     // speed of deleting
+const pauseAfterTyping = 1500; // wait after word is typed
+const pauseAfterDeleting = 500; // wait before next word
+
+function type() {
+    const typingSpan = document.querySelector(".typing");
+    
+    // Safety check
+    if (!phrases[i]) return;
+
+    if (!isDeleting) {
+        // Typing
+        currentText = phrases[i].substring(0, j + 1);
+        typingSpan.textContent = currentText;
+        j++;
+
+        if (j < phrases[i].length) {
+            setTimeout(type, typingSpeed);
+        } else {
+            // Word finished
+            isDeleting = true;
+            setTimeout(type, pauseAfterTyping);
+        }
+    } else {
+        // Deleting
+        currentText = phrases[i].substring(0, j - 1);
+        typingSpan.textContent = currentText;
+        j--;
+
+        if (j > 0) {
+            setTimeout(type, deletingSpeed);
+        } else {
+            // Word fully deleted, next word
+            isDeleting = false;
+            i = (i + 1) % phrases.length;
+            setTimeout(type, pauseAfterDeleting);
+        }
+    }
+}
+
+document.addEventListener("DOMContentLoaded", type);
+</script>
+</body>
+</html>
